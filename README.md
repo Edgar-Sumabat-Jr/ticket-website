@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- TOC start -->
 # Table of contents
 - [Table of contents](#table-of-contents)
@@ -1344,3 +1345,7 @@ and when you login to a different user (```username: "user2", password: "passwor
 ```
 
 ---
+=======
+# ticket-website
+test 1
+>>>>>>> af7fff5e7b0c9f7d6e865e6e4839bd177b3a774f
