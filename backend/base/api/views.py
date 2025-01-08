@@ -7,6 +7,9 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 
 from base.serializer import ProfileSerializer
 
+from rest_framework import generics
+from ..serializer import UserRegistrationSerializer
+
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
@@ -26,3 +29,7 @@ def get_profile(request):
     profile = user.profile
     serializer = ProfileSerializer(profile, many=False)
     return Response(serializer.data)
+
+
+class UserRegistrationView(generics.CreateAPIView):
+    serializer_class = UserRegistrationSerializer
