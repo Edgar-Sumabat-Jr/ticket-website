@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
     const [username, setUsername] = useState('');
@@ -10,7 +10,7 @@ const Register = () => {
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
 
-    const navigate = useNavigate(); // Initialize useNavigate
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -34,7 +34,6 @@ const Register = () => {
             }
 
             setSuccess('Registration successful! You can now log in.');
-            // Redirect to home page after successful registration
             navigate('/'); // Redirect to home page
         } catch (err) {
             setError(err.message);
@@ -42,9 +41,9 @@ const Register = () => {
     };
 
     return (
-        <div>
+        <div className="register-container">
             <h2>Register</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="register-form">
                 <div>
                     <label>Username:</label>
                     <input
@@ -92,8 +91,8 @@ const Register = () => {
                 </div>
                 <button type="submit">Register</button>
             </form>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            {success && <p style={{ color: 'green' }}>{success}</p>}
+            {error && <p className="error-message">{error}</p>}
+            {success && <p className="success-message">{success}</p>}
         </div>
     );
 };

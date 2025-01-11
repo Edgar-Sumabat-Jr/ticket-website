@@ -1,0 +1,65 @@
+/* Navbar Styling (Navbar.css) */
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: black;
+    position: relative;
+  }
+  
+  .navbar-logo h1 {
+    font-size: 2rem;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .navbar-links {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  .nav-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    text-decoration: none;
+  }
+  
+  .nav-button:hover {
+    background-color: darkgray;
+  }
+  
+  .mobile-menu-icon {
+    display: none;
+    cursor: pointer;
+  }
+  
+  @media (max-width: 768px) {
+    .navbar-links {
+      position: absolute;
+      top: 80px;
+      right: 0;
+      background-color: #34495e;
+      width: 100%;
+      flex-direction: column;
+      padding: 20px;
+      display: none;
+    }
+  
+    .navbar-links.active {
+      display: flex;
+    }
+  
+    .mobile-menu-icon {
+    background-color: white;
+      display: block;
+    }
+  }
+  

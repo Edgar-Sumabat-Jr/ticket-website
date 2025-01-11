@@ -1,38 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react'
-import AuthContext from '../context/AuthContext';
+// HomePage.js
+import React from 'react';
 
 const HomePage = () => {
-    const { authTokens, logoutUser } = useContext(AuthContext);
-    let [profile, setProfile] = useState([])
+  return (
+    <div>
+      <h1>Welcome to the Homepage</h1>
+      <p>This page is accessible to everyone.</p>
+    </div>
+  );
+};
 
-    useEffect(() => {
-        getProfile()
-    },[])
-
-    const getProfile = async() => {
-        let response = await fetch('http://127.0.0.1:8000/api/profile', {
-        method: 'GET',
-        headers:{
-            'Content-Type': 'application/json',
-            'Authorization':'Bearer ' + String(authTokens.access)
-        }
-        })
-        let data = await response.json()
-        console.log(data)
-        if(response.status === 200){
-            setProfile(data)
-        } else if(response.statusText === 'Unauthorized'){
-            logoutUser()
-        }
-    }
-
-    return (
-        <div>
-            <p>You are logged in to the homepage!</p>
-            <p>Name: {profile.first_name} {profile.last_name}</p>
-            <p>Email: {profile.email}</p>
-        </div>
-    )
-}
-
-export default HomePage
+export default HomePage;
