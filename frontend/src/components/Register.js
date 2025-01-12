@@ -41,58 +41,80 @@ const Register = () => {
     };
 
     return (
-        <div className="register-container">
-            <h2>Register</h2>
-            <form onSubmit={handleSubmit} className="register-form">
-                <div>
-                    <label>Username:</label>
-                    <input
-                        type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>First Name:</label>
-                    <input
-                        type="text"
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Last Name:</label>
-                    <input
-                        type="text"
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Email:</label>
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Password:</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                <button type="submit">Register</button>
-            </form>
-            {error && <p className="error-message">{error}</p>}
-            {success && <p className="success-message">{success}</p>}
+        <div className="flex items-center justify-center min-h-screen bg-black">
+            <div className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full">
+                <h2 className="text-2xl font-bold text-center mb-6 text-white">Register</h2>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                        <label className="block mb-2 text-sm text-gray-400">Username:</label>
+                        <input
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            className="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-gray-500"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label className="block mb-2 text-sm text-gray-400">First Name:</label>
+                        <input
+                            type="text"
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
+                            className="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-gray-500"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label className="block mb-2 text-sm text-gray-400">Last Name:</label>
+                        <input
+                            type="text"
+                            value={lastName}
+                            onChange={(e) => setLastName(e.target.value)}
+                            className="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-gray-500"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label className="block mb-2 text-sm text-gray-400">Email:</label>
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-gray-500"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label className="block mb-2 text-sm text-gray-400">Password:</label>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-gray-500"
+                            required
+                        />
+                    </div>
+                    <button
+                        type="submit"
+                        className="w-full bg-gray-300 py-2 rounded hover:bg-gray-200 transition"
+                    >
+                        Register
+                    </button>
+                </form>
+                {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+                {success && <p className="text-green-500 text-sm mt-2">{success}</p>}
+
+                <p className="text-center mt-4 text-gray-400">
+                    Already have an account?{' '}
+                    <button
+                        onClick={() => alert('Switch to register form')}
+                        className="text-blue-400 hover:underline"
+                    >
+                        Register here
+                    </button>
+                </p>
+            </div>
         </div>
     );
 };

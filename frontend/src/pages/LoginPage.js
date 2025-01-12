@@ -2,39 +2,50 @@ import React, { useContext } from 'react';
 import AuthContext from '../context/AuthContext';
 
 const LoginPage = () => {
-    let { loginUser } = useContext(AuthContext);
+    let { loginUser  } = useContext(AuthContext);
 
     return (
-        <div className="bg-gray-800 min-h-screen flex items-center justify-center">
-            <form
-                onSubmit={loginUser}
-                className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md"
-            >
-                <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
-                <div className="mb-4">
-                    <input
-                        type="text"
-                        name="username"
-                        placeholder="Enter username"
-                        className="w-full p-2 bg-gray-200 rounded focus:outline-none"
-                    />
-                </div>
-                <div className="mb-4">
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="Enter password"
-                        className="w-full p-2 bg-gray-200 rounded focus:outline-none"
-                    />
-                </div>
-                <div>
-                    <input
+        <div className="flex items-center justify-center min-h-screen bg-black">
+            <div className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full">
+                <h2 className="text-2xl font-bold text-center mb-6 text-white">Login</h2>
+                <form onSubmit={loginUser } className="space-y-4">
+                    <div>
+                        <label className="block mb-2 text-sm text-gray-400">Username</label>
+                        <input
+                            type="text"
+                            name="username"
+                            placeholder="Enter your username"
+                            className="w-full p-2 bg-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-gray-500"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label className="block mb-2 text-sm text-gray-400">Password</label>
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            className="w-full p-2 bg-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-gray-500"
+                            required
+                        />
+                    </div>
+                    <button
                         type="submit"
-                        value="Login"
-                        className="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
-                    />
-                </div>
-            </form>
+                        className="w-full bg-gray-300 py-2 rounded hover:bg-gray-200 transition"
+                    >
+                        Login
+                    </button>
+                </form>
+                <p className="text-center mt-4 text-gray-400">
+                    Don't have an account?{' '}
+                    <button
+                        onClick={() => alert('Switch to register form')}
+                        className="text-blue-400 hover:underline"
+                    >
+                        Register here
+                    </button>
+                </p>
+            </div>
         </div>
     );
 };
