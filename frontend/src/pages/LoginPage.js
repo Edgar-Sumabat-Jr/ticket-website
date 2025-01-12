@@ -15,7 +15,7 @@ const LoginPage = () => {
                             type="text"
                             name="username"
                             placeholder="Enter your username"
-                            className="w-full p-2 bg-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-gray-500"
+                            className="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-gray-500"
                             required
                         />
                     </div>
@@ -25,7 +25,7 @@ const LoginPage = () => {
                             type="password"
                             name="password"
                             placeholder="Enter your password"
-                            className="w-full p-2 bg-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-gray-500"
+                            className="w-full p-2 bg-gray-700 rounded text-white focus:outline-none focus:ring-2 focus:ring-gray-500"
                             required
                         />
                     </div>
