@@ -7,12 +7,9 @@ import LoginPage from './pages/LoginPage';
 import LoggedInPage from './pages/LoggedInPage';
 
 import Navbar from './components/Navbar';
-import Register from './components/Register'; // Import the RegisterPage component
+import Register from './components/Register'; // Import the Register component
 
-import './pages/LoginPage.css';
 import './components/Navbar.css';
-import './components/Register.css';
-
 
 import PrivateRoute from './utils/PrivateRoute';
 
@@ -25,9 +22,8 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<Register />} /> {/* Add the Register route */}
+            <Route path="/register" element={<Register />} /> {/* Use the Register component */}
             <Route path="/profile" element={<PrivateRoute><LoggedInPage /></PrivateRoute>} />
-
           </Routes>
         </AuthProvider>
       </Router>

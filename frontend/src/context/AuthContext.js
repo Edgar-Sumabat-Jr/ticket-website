@@ -1,3 +1,4 @@
+// AuthContext.js
 import { createContext, useState, useEffect } from 'react';
 import jwtDecode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
@@ -6,22 +7,24 @@ const AuthContext = createContext();
 
 export default AuthContext;
 
-export const AuthProvider = ({children}) => {
-
-    const [user, setUser] = useState(() => (localStorage.getItem('authTokens') ? jwtDecode(localStorage.getItem('authTokens')) : null));
+export const AuthProvider = ({ children }) => {
+    const [user, setUser ] = useState(() => (localStorage.getItem('authTokens') ? jwtDecode(localStorage.getItem('authTokens')) : null));
     const [authTokens, setAuthTokens] = useState(() => (localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null));
     const [loading, setLoading] = useState(true);
+    const [errorMessage, setErrorMessage] = useState(null); // State for error messages
 
     const navigate = useNavigate();
 
-    let loginUser = async (e) => {
-        e.preventDefault();
+    const loginUser  = async (e) => {
+        e.preventDefault(); // Prevent default form submission
+        setErrorMessage(null); // Reset error message before login attempt
+
         const response = await fetch('http://127.0.0.1:8000/api/token/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({username: e.target.username.value, password: e.target.password.value}),
+            body: JSON.stringify({ username: e.target.username.value, password: e.target.password.value }),
         });
 
         let data = await response.json();
@@ -29,18 +32,20 @@ export const AuthProvider = ({children}) => {
         if (data && response.ok) {
             localStorage.setItem('authTokens', JSON.stringify(data));
             setAuthTokens(data);
-            setUser(jwtDecode(data.access));
+            setUser (jwtDecode(data.access)); // Update user state
             navigate('/'); // Redirect to home after login
+            return true; // success login
         } else {
-            alert('Check login credentials: Something went wrong while logging in!');
+            setErrorMessage('Check login credentials: Something went wrong while logging in!'); // Set error message
+            return false; // fail to login
         }
     };
 
-    let logoutUser = () => {
+    const logoutUser  = () => {
         localStorage.removeItem('authTokens');
         setAuthTokens(null);
-        setUser(null);
-        navigate('/login'); // Redirect to login after logout
+        setUser (null); // Reset user state
+        navigate('/'); // Redirect to login after logout
     };
 
     const updateToken = async () => {
@@ -58,10 +63,10 @@ export const AuthProvider = ({children}) => {
 
         if (response.status === 200) {
             setAuthTokens(data);
-            setUser(jwtDecode(data.access));
+            setUser (jwtDecode(data.access));
             localStorage.setItem('authTokens', JSON.stringify(data));
         } else {
-            logoutUser(); // If refresh fails, logout user
+            logoutUser (); // If refresh fails, logout user
         }
 
         if (loading) {
@@ -72,8 +77,9 @@ export const AuthProvider = ({children}) => {
     let contextData = {
         user,
         authTokens,
-        loginUser,
-        logoutUser,
+        loginUser ,
+        logoutUser ,
+        errorMessage, // Provide error message in context
     };
 
     useEffect(() => {
